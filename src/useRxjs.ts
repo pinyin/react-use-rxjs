@@ -1,5 +1,5 @@
 import { OperatorFunction, Subject, Subscription } from 'rxjs'
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function useRxjs<A, S>(
     op: OperatorFunction<A, S>,
