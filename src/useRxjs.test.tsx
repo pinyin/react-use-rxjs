@@ -11,8 +11,8 @@ describe(`${useRxjs.name}`, () => {
     const init = '2'
 
     const RxComponent = () => {
-        const [state, trigger] = useRxjs(op, init)
-        return <p onClick={() => trigger(3)}>{state}</p>
+        const [state, publish] = useRxjs(op, init, [])
+        return <p onClick={() => publish(3)}>{state}</p>
     }
 
     it(`should emit default value`, () => {
@@ -26,4 +26,6 @@ describe(`${useRxjs.name}`, () => {
         renderer.root.findAllByType('p')[0].props['onClick']()
         expect(renderer.root.findAllByType('p')[0].children[0]).toEqual('3')
     })
+
+    // todo: test unsubscribe & resubscribe
 })

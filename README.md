@@ -19,8 +19,8 @@ const op = input => {
 const init = '2'
 
 const RxComponent = () => {
-    const [state, trigger] = useRxjs(op, init)
-    return <p onClick={() => trigger(3)}>{state}</p>
+    const [state, publish] = useRxjs(op, init, [])
+    return <p onClick={() => publish(3)}>{state}</p>
 }
 
 <RxComponent/>
@@ -28,6 +28,8 @@ const RxComponent = () => {
 ```
 
 Will render 2 in the beginning, then 3 after clicked.
+
+The third param of `useRxjs` is optional and works just like the last param of official hooks like `useMemo` or `useEffect`.
 
 ## License
 
