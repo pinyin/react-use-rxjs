@@ -1,5 +1,5 @@
 import { useRxjs } from './useRxjs'
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { create } from 'react-test-renderer'
 import * as React from 'react'
@@ -18,6 +18,18 @@ describe(`${useRxjs.name}`, () => {
     it(`should emit default value`, () => {
         const renderer = create(<RxComponent />)
         expect(renderer.root.findAllByType('p')[0].children[0]).toEqual('2')
+    })
+
+    it(`should support raw Observable`, async () => {
+        const obs = op(of(5))
+        const RxComponent = () => {
+            const [state, publish] = useRxjs(obs, init, [])
+            return <p onClick={() => publish(3)}>{state}</p>
+        }
+
+        const renderer = create(<RxComponent />)
+        await new Promise(resolve => setTimeout(resolve, 100))
+        expect(renderer.root.findAllByType('p')[0].children[0]).toEqual('5')
     })
 
     it(`should update returned value with op`, async () => {

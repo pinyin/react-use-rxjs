@@ -29,6 +29,8 @@ const RxComponent = () => {
 
 Will render 2 in the beginning, then 3 after clicked.
 
+The first param of `useRxjs` can also be an `Observable`, in which case `state` would be values from the passed Observable and `publish` would be ignored.
+
 The third param of `useRxjs` is optional and works just like the last param of official hooks like `useMemo` or `useEffect`.
 
 ## License
